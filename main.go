@@ -105,9 +105,9 @@ func handlerEvent(w http.ResponseWriter, req *http.Request) {
 		}
 	}()
 
-	vars := mux.Vars(req)
+	//vars := mux.Vars(req)
 	w.WriteHeader(http.StatusOK)
-	log.Println(vars)
+	//log.Println(vars)
 
 	var event Event
 	if req.Body == nil {
@@ -120,7 +120,9 @@ func handlerEvent(w http.ResponseWriter, req *http.Request) {
 		return
 	}
 
-	log.Println(event)
+	log.WithFields(log.Fields{
+		"event": event,
+	}).Println("got event from flagger")
 }
 
 func healthz(w http.ResponseWriter, req *http.Request) {
