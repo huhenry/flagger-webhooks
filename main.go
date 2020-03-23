@@ -56,9 +56,10 @@ func main() {
 		log.Fatal(srv.ListenAndServe())
 
 		log.Println("Server is starting at 0.0.0.0:8080")
-		atomic.StoreInt32(&healthy, 1)
 
 	}()
+
+	atomic.StoreInt32(&healthy, 1)
 
 	c := make(chan os.Signal, 1)
 	// We'll accept graceful shutdowns when quit via SIGINT (Ctrl+C)
